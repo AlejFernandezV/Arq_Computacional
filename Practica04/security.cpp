@@ -2,12 +2,16 @@
 #include "lcd.h"
 #include "stateMachine.h"
 #include "rgb.h"
-#include "keypad.h"
+#include "keypadW.h"
 #include "security.h"
+
+#define WAIT_KEY 6000
 
 //----Variables----
 char enterCode[6]={'0','0','0','0','0','0'};
 int pos=0, attempt=0; 
+unsigned long initTimeKey=0,finalTimeKey=0;
+
 //----Setup----
 void setupSecurity(){
   setupLcd();
@@ -42,8 +46,19 @@ void correctPassword(){
   setInput(1); //To setMenu
 }
 void unlockSystem(){
+  finalTimeKey=millis();
+  if(finalTimeKey>initTimeKey+WAIT_KEY && initTimeKey!=0){
+    initTimeKey=0;
+    for(int i =0;i<6;i++){
+      enterCode[i]='*';
+    }
+    wrongPassword();
+    clearScreen();
+    pos=0;
+  }
   lcdSetPrint(0,0,"PASSWORD:");
   char key = getKeyAux();
+  
   if(key=='#'||pos==6) {//check
     char secretCode[6] = {'8','7','6','1','8','9'};//System password
     for(pos=0;pos<6;pos++){
@@ -52,6 +67,7 @@ void unlockSystem(){
     correctPassword();
   }
   if(key) {//add
+    initTimeKey=millis();
     lcdSetPrint(pos,1,"*");
     enterCode[pos]=key;
     pos++;

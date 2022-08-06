@@ -1,6 +1,6 @@
 #include "memory.h"
 #include "menu.h"
-#include "keypad.h"
+#include "keypadW.h"
 
 //----Address EEPROM----
 #define HIGH_TEMP_ADDRESS 0

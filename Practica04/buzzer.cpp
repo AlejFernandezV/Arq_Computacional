@@ -1,6 +1,15 @@
+/**
+ * @file
+ * This is the file for the buzzer control
+ */
+
 #include <arduino.h>
+/*! \def BUZZER
+ \brief Macro defining the pin connection
+*/
 //----Pin connections----
 #define BUZZER 48
+
 //----Melody - Buzzer----
 #define NOTE_c 261
 #define NOTE_d 294
@@ -21,12 +30,21 @@
 #define NOTE_gH 783
 #define NOTE_gSH 830
 #define NOTE_aH 880
-//----functions----
+
+/**
+ * toneWith
+ * A tone of a frequency with a sound time limit.
+ * @param a value of frecuency (Hz).
+ * @param a time (ms) that the note will last.
+ */
 void toneWith(int nota, int time_ms){
   tone(BUZZER, nota, time_ms);
   delay(time_ms+50);
 }
-//----StarWars song for the alarm
+/**
+ * song.
+ * A song generated with the buzzer notes. Star Wars' song.
+ */
 void song(){
   toneWith(NOTE_a,500);
   toneWith(NOTE_a,500);

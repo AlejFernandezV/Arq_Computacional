@@ -1,4 +1,6 @@
+//----setup----
 void setupSensorController();
-void microSystem();
-void tempSystem();
-void lightSystem();
+//----getters----
+float getTempValue();
+float getLightValue();
+float getMicroValue();

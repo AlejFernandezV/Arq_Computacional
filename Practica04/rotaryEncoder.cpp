@@ -54,6 +54,12 @@ bool isDownRotary(){
   if (swState == LOW && swLast == HIGH) initTime=millis();
   swLast = swState;
   if(swState == LOW && swLast == LOW) finalTime=millis();
-  if(finalTime>initTime+3000) return true;
+  if(finalTime>initTime+3000) {
+    swState=swLast=HIGH;
+    initTime=finalTime=0;
+    Serial.println("Rotary down");
+    delay(1000);// debounce
+    return true;
+  }
   return false;
 }

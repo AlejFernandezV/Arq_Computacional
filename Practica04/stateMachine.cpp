@@ -36,24 +36,32 @@ void outputA(){//security
   Serial.println("A   B   C   D");
   Serial.println("X            ");
   Serial.println();
+  input=Input::Unknown;
+  Serial.println(input);
   setupSecurity();
 }
 void outputB(){//startMenu
   Serial.println("A   B   C   D");
   Serial.println("    X        ");
   Serial.println();
+  input=Input::Unknown;
+  Serial.println(input);
   setupStartMenu();
 }
 void outputC(){//taskManager
   Serial.println("A   B   C   D");
   Serial.println("        X    ");
   Serial.println();
+  input=Input::Unknown;
+  Serial.println(input);
   setupTaskManager();
 }
 void outputD(){//alarm
   Serial.println("A   B   C   D");
   Serial.println("            X");
   Serial.println();
+  input=Input::Unknown;
+  Serial.println(input);
 }
 
 //----Setup----
